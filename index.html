@@ -1,0 +1,50 @@
+<html>
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="/app.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+  <body>
+
+    <button data-bind="click: swapData">Simulate Data change</button><br><br>
+    <button data-bind="click: multipleCars">Load Multiple Cars</button><br><br>
+    <button data-bind="click: tonsOfCars">Load A Lot of Cars (1293)</button><br><br>
+
+    <div class="pager">
+      <h3>Pages</h3>
+      	<a href="#" class="previous" data-bind="click: previous, visible: hasPrevious">&lt;</a>
+      <!--<ul data-bind="foreach:new Array(totalPages() + 1)">
+          <li class="page-num" data-bind="css: {'active': $index() == $parent.currentPage}">
+              <a href="#" data-bind="text:$index() + 1, click:$parent.goToPage($index)">0</a>
+          </li>
+      </ul> --> 
+    	  <a href="#" class="next" data-bind="click: next, visible: hasNext">&gt;</a>
+    </div>
+    <!--<div class="container" data-bind="foreach: {data: cars, afterRender: afterRender, afterAdd: afterAdd, beforeRemove: beforeRemove}">-->
+    <div class="container" data-bind="foreach: {data: paginated, afterRender: afterRender, afterAdd: afterAdd, beforeRemove: beforeRemove}">
+      <div class="car">
+        <div>
+          <span class="label">VIN:</span>
+          <span data-bind="text: VIN"></span>
+        </div>
+        <div>
+          <span class="label">Color:</span>
+          <span data-bind="text: color"></span>
+        </div> 
+      
+        <br>
+        <div class="label">Features:</div>
+        <div data-bind="foreach: { data: features, as: 'feature'}">
+          <!-- If this is the last of the features, don't include a comma -->
+          <span data-bind="text: ($index() === ($parent.features.length - 1)) ? feature : feature + ','"></span>
+        </div> 
+        
+        <div data-bind="foreach: { data: images, as: 'image'}">
+          <img width="40px" height="40px" data-bind="attr:{src: image}" /> 
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

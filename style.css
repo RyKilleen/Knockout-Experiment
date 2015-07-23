@@ -1,0 +1,20 @@
+.car {
+  background-color: #efefef;
+  border: 1px solid #aaa;
+  position: relative;  
+  float: left;
+  opacity: 0;
+  left: -10px;
+  margin: 20px 20px;
+  padding: 10px;
+  transition: all 0.3s ease-in;
+}
+
+.car.show {
+  left: 0;
+  opacity: 1;
+}
+
+.page-num {
+  display: inline-block;
+}
